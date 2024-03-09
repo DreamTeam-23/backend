@@ -19,3 +19,6 @@ const ReminderSchema = new mongoose.Schema({
     updateDate: { type: Date, required: true, default: Date.now },
     notified: { type: Boolean, required: true, default: false }
 })
+
+const Reminder = mongoose.models.Reminder || mongoose.model('Reminder', ReminderSchema);
+export default Reminder;
