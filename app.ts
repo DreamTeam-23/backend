@@ -13,6 +13,10 @@ import users from "./routes/users"
 import user from "./routes/user"
 import connectDB from "./config/connect"
 import usermessages from "./routes/usermessages"
+import createReminderRoute from './routes/reminders/create';
+import readReminderRoute from './routes/reminders/read';
+import updateReminderRoute from './routes/reminders/update';
+import deleteReminderRoute from './routes/reminders/delete';
 
 dotenv.config()
 const app = express()
@@ -28,6 +32,10 @@ app.get("/", (req, res) => {
 app.use("/api/users", users)
 app.use("/api/user", user)
 app.use("/api/user/messages", usermessages)
+app.use('/api/reminders/create', createReminderRoute);
+app.use('/api/reminders/read', readReminderRoute);
+app.use('/api/reminders/update', updateReminderRoute);
+app.use('/api/reminders/delete', deleteReminderRoute);
 
 async function start() {
     try {
