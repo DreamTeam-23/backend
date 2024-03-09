@@ -3,6 +3,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+//@ts-ignore
 import User from "./models/User";
 
 const saltRounds = 6;
