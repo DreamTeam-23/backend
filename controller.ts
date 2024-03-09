@@ -3,14 +3,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-const User = require('./models/User');
-const Post = require('./models/Post');
-const Comment = require('./models/Comment');
-const Reply = require('./models/Reply');
-const PostVote = require('./models/PostVote');
-const CommentVote = require('./models/CommentVote');
-const ReplyVote = require('./models/ReplyVote');
+import User from "./models/User";
 
 const saltRounds = 6;
 
