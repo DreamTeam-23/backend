@@ -1,10 +1,3 @@
-/*
-author: Harman
-date: March 9, 2024
-version: 1.0
-description: Streaks model schema for Space web server
- */
-
 import mongoose from "mongoose";
 
 const StreakSchema = new mongoose.Schema({

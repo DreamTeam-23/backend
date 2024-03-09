@@ -1,4 +1,5 @@
 import { Streak } from '../models/Streak'
+import { checkAndUpdateAchievements } from './achievementsHelper'
 
 const updateStreaks = async () => {
     const userStreaks = await Streak.find()
@@ -16,6 +17,7 @@ const updateStreaks = async () => {
             userStreak.currentStreak += 1
             if (userStreak.currentStreak > userStreak.longestStreak) {
                 userStreak.longestStreak = userStreak.currentStreak
+                await checkAndUpdateAchievements(userStreak.userId, userStreak.currentStreak)
             }
         }
 

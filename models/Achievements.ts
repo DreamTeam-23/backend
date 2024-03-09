@@ -1,11 +1,3 @@
-/*
-author: Harman
-collaborator: Ebod Shojaei
-date: March 9, 2024
-version: 1.0
-description: Achievements model schema for Space web server
- */
-
 import mongoose from "mongoose";
 
 const AchievementSchema = new mongoose.Schema({
