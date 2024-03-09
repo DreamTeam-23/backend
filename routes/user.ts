@@ -7,7 +7,7 @@ description: user route for Space web server
  */
 
 import express from "express"
-import { validateUser, decryptToken } from "../controller"
+import { validateUser, decryptToken } from "../controllers/userController"
 
 const user = express.Router()
 

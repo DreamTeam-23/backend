@@ -9,8 +9,8 @@ description: controller for Space web server
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "./models/User";
-import UserMessage from "./models/UserMessage";
+import User from "../models/User";
+import UserMessage from "../models/UserMessage";
 
 const saltRounds = 6;
 

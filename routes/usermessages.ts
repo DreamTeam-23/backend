@@ -1,6 +1,6 @@
 
 import express from "express"
-import { createUserMessage } from "../controller"
+import { createUserMessage } from "../controllers/userController"
 
 const usermessages = express.Router()
 

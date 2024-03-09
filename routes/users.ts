@@ -7,7 +7,7 @@ description: users route for Space web server
  */
 
 import express from "express"
-import { createUser, getUser } from "../controller"
+import { createUser, getUser } from "../controllers/userController"
 
 const users = express.Router()
 

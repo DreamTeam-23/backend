@@ -11,7 +11,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import users from "./routes/users"
 import user from "./routes/user"
-import connectDB from "./connect"
+import connectDB from "./config/connect"
 import usermessages from "./routes/usermessages"
 
 dotenv.config()
