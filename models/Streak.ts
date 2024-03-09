@@ -7,7 +7,7 @@ description: Streaks model schema for Space web server
 
 import mongoose from "mongoose";
 
-const StreaksSchema = new mongoose.Schema({
+const StreakSchema = new mongoose.Schema({
     streakId: { type: Number, required: [true, 'streakId is required'] },
     userId: { type: Number, required: [true, 'userId is required'] },
     currentStreak: { type: Number, default: 0 },
@@ -16,3 +16,5 @@ const StreaksSchema = new mongoose.Schema({
     updateDate: { type: Date, required: true, default: Date.now },
 })
 
+const Streak = mongoose.models.Streak || mongoose.model('Streak', StreakSchema);
+export { Streak }
