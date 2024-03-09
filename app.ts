@@ -12,6 +12,7 @@ import dotenv from "dotenv"
 import users from "./routes/users"
 import user from "./routes/user"
 import connectDB from "./connect"
+import usermessages from "./routes/usermessages"
 
 dotenv.config()
 const app = express()
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", users)
 app.use("/api/user", user)
+app.use("/api/user/messages", usermessages)
 
 async function start() {
     try {

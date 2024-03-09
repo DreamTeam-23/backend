@@ -10,6 +10,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "./models/User";
+import UserMessage from "./models/UserMessage";
 
 const saltRounds = 6;
 
@@ -80,5 +81,19 @@ export async function createUser(req: Request, res: Response) {
         const encrypted = await bcrypt.hash(password, saltRounds)
         const user = await User.create({ username, password: encrypted, email, userId })
         res.status(200).json({ success: true, message: "Sign up successful!" })
+    }
+}
+
+export async function createUserMessage(req: Request, res: Response){
+    const userMessages = await UserMessage.find({});
+    const userMessageId = userMessages.length === 0 ? 1 : userMessages[userMessages.length - 1].userMessageId + 1;
+    const email = req.body.email;
+    const content = req.body.content;
+    try{
+        await UserMessage.create({email,content,userMessageId});
+        res.status(200).json({ success: true, message: "Message sent successfully!" })
+    }
+    catch(err){
+        console.log(err)
     }
 }
