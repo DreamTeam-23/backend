@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const StreakSchema = new mongoose.Schema({
-    streakId: { type: mongoose.Schema.Types.ObjectId, required: [true, 'streakId is required'], auto: true },
     userId: { type: Number, required: [true, 'userId is required'] },
     currentStreak: { type: Number, default: 0 },
     longestStreak: { type: Number, default: 0 },

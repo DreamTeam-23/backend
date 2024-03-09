@@ -9,7 +9,6 @@ description: user message model schema for Space API server
 import mongoose from "mongoose";
 
 export const UserMessageSchema = new mongoose.Schema({
-    userMessageId: { type: mongoose.Schema.Types.ObjectId, required: [true, 'userMessageId is required'], auto: true },
     email: { type: String, trim: true, maxlength: [255, 'title char limit is 80'] },
     content: { type: String, maxlength: [40000, 'content char limit is 10000'] },
     createDate: { type: Date, required: true, default: Date.now }

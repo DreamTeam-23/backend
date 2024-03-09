@@ -10,7 +10,6 @@ description: User model schema for Space web server
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, required: [true, 'userId is required'], auto: true },
     email: { type: String, required: [true, 'email is required'], unique: true, maxlength: [255, 'email char limit is 255'] },
     password: { type: String, required: [true, 'password is required'], maxlength: [80, 'password char limit is 80'] },
     username: { type: String, required: [true, 'username is required'], maxlength: [80, 'username char limit is 80'] },

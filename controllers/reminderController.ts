@@ -6,22 +6,27 @@ description: reminder controller for Space web server
  */
 import { Request, Response } from "express";
 import Reminder from "../models/Reminder";
-import { getUserFromToken } from "../util/getUserFromToken";
+import User from "../models/User";
 
 
 export async function createReminder(req: Request, res: Response) {
-    const { token, reminder } = req.body;
-    const user = await getUserFromToken(token);
+    const { userId } = req.body;
+    const user = await User.findById(userId);
 
     if (!user) {
         return res.status(404).json({ message: "User not found" });
     }
 
-    const newReminder = new Reminder({ ...reminder, userId: user.userId });
+    const reminder = req.body;
+    const newReminder = new Reminder({ ...reminder });
     try {
+        console.log(newReminder);
         await newReminder.save();
+        user.reminders.push(newReminder);
+        await user.save();
         res.status(201).json({ message: "Reminder created successfully" });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Error creating reminder", error });
     }
 }
