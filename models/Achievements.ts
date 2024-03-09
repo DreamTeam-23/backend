@@ -9,7 +9,8 @@ description: Achievements model schema for Space web server
 import mongoose from "mongoose";
 
 const AchievementSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    achievementId: { type: mongoose.Schema.Types.ObjectId, required: [true, 'achievementId is required'], auto: true },
+    badgeIcon: { type: String, required: [true, 'badgeIcon is required'] },
     name: { type: String, required: [true, 'name is required'] },
     description: { type: String, required: [true, 'description is required'] },
     criteria: { type: Number, required: [true, 'criteria is required'] },

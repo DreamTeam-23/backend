@@ -8,7 +8,7 @@ description: Streaks model schema for Space web server
 import mongoose from "mongoose";
 
 const StreakSchema = new mongoose.Schema({
-    streakId: { type: Number, required: [true, 'streakId is required'] },
+    streakId: { type: mongoose.Schema.Types.ObjectId, required: [true, 'streakId is required'], auto: true },
     userId: { type: Number, required: [true, 'userId is required'] },
     currentStreak: { type: Number, default: 0 },
     longestStreak: { type: Number, default: 0 },
