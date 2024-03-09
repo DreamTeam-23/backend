@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: [true, 'password is required'], maxlength: [80, 'password char limit is 80'] },
     username: { type: String, required: [true, 'username is required'], maxlength: [80, 'username char limit is 80'] },
     reminders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reminder' }],
+    timers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Timer' }],
     achievements: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Achievement' }],
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     streak: { type: Number, default: 0 },
