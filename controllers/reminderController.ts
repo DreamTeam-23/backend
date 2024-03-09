@@ -17,7 +17,7 @@ export async function createReminder(req: Request, res: Response) {
         return res.status(404).json({ message: "User not found" });
     }
 
-    const newReminder = new Reminder({ ...reminder, userId: user._id });
+    const newReminder = new Reminder({ ...reminder, userId: user.userId });
     try {
         await newReminder.save();
         res.status(201).json({ message: "Reminder created successfully" });
