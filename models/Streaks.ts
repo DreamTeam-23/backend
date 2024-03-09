@@ -1,0 +1,18 @@
+/*
+author: Harman
+date: March 9, 2024
+version: 1.0
+description: Streaks model schema for Space web server
+ */
+
+import mongoose from "mongoose";
+
+const StreaksSchema = new mongoose.Schema({
+    streakId: { type: Number, required: [true, 'streakId is required'] },
+    userId: { type: Number, required: [true, 'userId is required'] },
+    currentStreak: { type: Number, default: 0 },
+    longestStreak: { type: Number, default: 0 },
+    createDate: { type: Date, required: true, default: Date.now },
+    updateDate: { type: Date, required: true, default: Date.now },
+})
+
