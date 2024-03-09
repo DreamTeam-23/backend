@@ -4,6 +4,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import users from "./routes/users"
 import user from "./routes/user"
+import connectDB from "./connect"
 
 dotenv.config()
 const app = express()
@@ -21,6 +22,8 @@ app.use("/api/user", user)
 
 async function start() {
     try {
+        await connectDB(process.env.MONGO_URI);
+        console.log("Connected to database.");
         app.listen(port, () => console.log(`Server listening on port: ${port}`));
     }
     catch (err) {
