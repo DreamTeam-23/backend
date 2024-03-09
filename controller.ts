@@ -1,9 +1,14 @@
 
+/*
+author: Paul Kim
+date: March 9, 2024
+version: 1.0
+description: controller for Space web server
+ */
 
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-//@ts-ignore
 import User from "./models/User";
 
 const saltRounds = 6;
@@ -52,8 +57,13 @@ export async function searchUserById(id: number) {
 
 export async function getUser(req: Request, res: Response) {
     const userId = req.params.userId;
-    const user = await User.find({ userId: parseInt(userId) })
-    res.json({ user });
+    try{
+        const user = await User.find({ userId: parseInt(userId) })
+        res.json({ user });
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 
 export async function createUser(req: Request, res: Response) {

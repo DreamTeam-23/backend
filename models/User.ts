@@ -1,5 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+/*
+author: Paul Kim
+date: March 9, 2024
+version: 1.0
+description: User model schema for Space web server
+ */
+
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
     userId: { type: Number, required: [true, 'userId is required'] },
@@ -9,4 +16,5 @@ const UserSchema = new mongoose.Schema({
     createDate: { type: Date, required: true, default: Date.now }
 })
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.models.User || mongoose.model('User', UserSchema);
+export default User;

@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: March 9, 2024
+version: 1.0
+description: app for Space web server
+ */
+
 import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
