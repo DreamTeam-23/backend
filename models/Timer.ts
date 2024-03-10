@@ -9,6 +9,7 @@ import e from "express";
 import mongoose from "mongoose";
 
 const TimerSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     reminderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Reminder' },
     timer: { type: Number, required: true },
     completed: { type: Boolean, default: false },
