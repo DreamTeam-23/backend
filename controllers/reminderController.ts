@@ -22,7 +22,7 @@ export async function createReminder(req: Request, res: Response) {
     try {
         console.log(newReminder);
         await newReminder.save();
-        res.status(201).json({ message: "Reminder created successfully" });
+        res.status(201).json({ success:true, message: "Reminder created successfully" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error creating reminder", error });
@@ -108,7 +108,7 @@ export async function updateReminder(req: Request, res: Response) {
         if (!reminder) {
             return res.status(404).json({ message: "Reminder not found" });
         }
-        res.json({ message: "Reminder updated successfully", reminder });
+        res.json({ success:true, message: "Reminder updated successfully", reminder });
     } catch (error) {
         res.status(500).json({ message: "Error updating reminder", error });
     }
