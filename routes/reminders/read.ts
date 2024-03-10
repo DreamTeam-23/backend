@@ -14,4 +14,7 @@ const reminderRouter = express.Router();
 // GET route for reading a reminder by ID
 reminderRouter.get('/:reminderId', getReminder);
 
+// GET route for reading all reminders
+reminderRouter.get('/', getReminder);
+
 export default reminderRouter;

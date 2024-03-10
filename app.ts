@@ -34,8 +34,8 @@ app.get("/", (req, res) => {
 app.use("/api/users", users)
 app.use("/api/user", user)
 app.use("/api/user/messages", usermessages)
+app.use('/api/reminders', readReminderRoute);
 app.use('/api/reminders/create', createReminderRoute);
-app.use('/api/reminders/read', readReminderRoute);
 app.use('/api/reminders/update', updateReminderRoute);
 app.use('/api/reminders/delete', deleteReminderRoute);
 

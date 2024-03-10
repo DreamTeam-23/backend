@@ -29,17 +29,73 @@ export async function createReminder(req: Request, res: Response) {
     }
 }
 
+async function getReminderById(reminderId: string) {
+    try {
+        return await Reminder.findById(reminderId);
+    } catch (error) {
+        return null;
+    }
+}
+
+async function getReminderByUser(userId: string) {
+    try {
+        return await Reminder.find({ userId });
+    } catch (error) {
+        return [];
+    }
+}
+
 export async function getReminder(req: Request, res: Response) {
     const { reminderId } = req.params;
+    const { userId } = req.query;
 
     try {
-        const reminder = await Reminder.findById(reminderId);
-        if (!reminder) {
-            return res.status(404).json({ message: "Reminder not found" });
+        // Fetch a single reminder by ID
+        if (reminderId) {
+            const reminder = await getReminderById(reminderId);
+            if (!reminder) {
+                return res.status(404).json({ message: "Reminder not found" });
+            }
+            return res.json(reminder);
         }
-        res.json(reminder);
+
+        // Fetch all reminders for a user
+        if (userId) {
+            const reminders = await getReminderByUser(userId.toString());
+            if (reminders.length === 0) {
+                return res.status(404).json({ message: "No reminders found for this user" });
+            }
+            return res.json(reminders);
+        }
+
+        // If neither reminderId nor userId is provided
+        return res.status(400).json({ message: "Reminder ID or User ID is required" });
     } catch (error) {
-        res.status(500).json({ message: "Error fetching reminder", error });
+        res.status(500).json({ message: "Error fetching reminders", error });
+    }
+}
+
+
+// Helper function
+export async function getUserReminders(userId: string | null = null, reminderIds: string[] = []) {
+    try {
+        if (reminderIds.length > 0) {
+            if (userId) {
+                return await Reminder.find({ userId, _id: { $in: reminderIds } }); // Retrieve reminders by user ID and IDs
+            } else {
+                return await Reminder.find({ _id: { $in: reminderIds } }); // Retrieve reminders by IDs
+            }
+        }
+        if (reminderIds.length === 0) {
+            if (userId) {
+                return await Reminder.find({ userId }); // Retrieve reminders by user ID
+            } else {
+                return await Reminder.find(); // Retrieve all reminders
+            }
+        }
+        return [];
+    } catch (error) {
+        return [];
     }
 }
 
