@@ -27,4 +27,4 @@ const updateStreaks = async () => {
     })
 }
 
-export { updateStreaks }
+export default updateStreaks

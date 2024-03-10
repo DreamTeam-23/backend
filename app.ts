@@ -9,6 +9,7 @@ description: app for Space web server
 import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
+import cron from "node-cron"
 import users from "./routes/users"
 import user from "./routes/user"
 import connectDB from "./config/connect"
@@ -17,6 +18,7 @@ import createReminderRoute from './routes/reminders/create';
 import readReminderRoute from './routes/reminders/read';
 import updateReminderRoute from './routes/reminders/update';
 import deleteReminderRoute from './routes/reminders/delete';
+import updateStreaks from './helpers/streaksHelper'
 
 dotenv.config()
 const app = express()
@@ -42,6 +44,11 @@ async function start() {
         await connectDB(process.env.MONGO_URI);
         console.log("Connected to database.");
         app.listen(port, () => console.log(`Server listening on port: ${port}`));
+        cron.schedule('0 0 * * *', async () => {
+            console.log('Running updateStreaks...');
+            await updateStreaks();
+            console.log('updateStreaks completed.');
+        });
     }
     catch (err) {
         console.log(err)
