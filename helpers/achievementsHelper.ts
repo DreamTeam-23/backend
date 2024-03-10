@@ -1,7 +1,7 @@
 import Achievement from "../models/Achievements";
 import User from "../models/User"
 
-const checkAndUpdateAchievements = async (userId, currStreak) => {
+const checkAndUpdateAchievements = async (userId: string, currStreak: number) => {
     try {
         const user = await User.findOne({ userId })
         if (!user) {
@@ -22,7 +22,7 @@ const checkAndUpdateAchievements = async (userId, currStreak) => {
 
         await user.save()
     } catch (err) {
-
+        console.log(err)
     }
 }
 
