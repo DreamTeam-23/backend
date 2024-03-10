@@ -22,8 +22,6 @@ export async function createReminder(req: Request, res: Response) {
     try {
         console.log(newReminder);
         await newReminder.save();
-        user.reminders.push(newReminder);
-        await user.save();
         res.status(201).json({ message: "Reminder created successfully" });
     } catch (error) {
         console.log(error);
